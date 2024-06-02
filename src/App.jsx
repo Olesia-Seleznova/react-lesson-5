@@ -1,11 +1,11 @@
-import { Heading, Header } from 'components';
+import { Header } from 'components';
 import Home from 'pages/Home';
 import Rates from 'pages/Rates';
 import { useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { getUserInfo } from './service';
 import { useDispatch } from 'react-redux';
-import { getBaseCurrency } from 'components/reduxState/currencyOps';
+import { getBaseCurrency } from 'reduxState/currencyOps';
+import { getDefautCurrency } from 'reduxState/currencySlice';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -21,6 +21,7 @@ export const App = () => {
     };
 
     function error(err) {
+      dispatch(getDefautCurrency('USD'));
       console.warn(`ERROR(${err.code}): ${err.message}`);
     }
 

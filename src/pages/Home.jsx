@@ -1,6 +1,15 @@
-import { Container, Heading, Section } from 'components';
+import {
+  Container,
+  ExchangeForm,
+  ExchangeInfo,
+  Heading,
+  Section,
+} from 'components';
+import { useSelector } from 'react-redux';
+import { selectExchangeInfo } from 'reduxState/currencySlice';
 
 const Home = () => {
+  const exchangeInfo = useSelector(selectExchangeInfo);
   const isError = false;
 
   return (
@@ -14,6 +23,9 @@ const Home = () => {
             title="Something went wrong...😐 Check the data validity and try again!"
           />
         )}
+        <ExchangeForm />
+
+        {exchangeInfo && <ExchangeInfo />}
       </Container>
     </Section>
   );
